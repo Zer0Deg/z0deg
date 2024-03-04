@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آلة حاسبة لوحدات التبريد</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  margin-top: 30px;
+  text-align: right;
+}
+
+#result div {
+  margin-bottom: 10px;
+}
+
+#result p {
+  margin: 10px 0; /* Added margin-bottom */
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">
+    <img src="https://media.licdn.com/dms/image/D4D0BAQFf-vkIuiyO7Q/company-logo_200_200/0/1692446565302?e=2147483647&v=beta&t=t-FieuxfeXywZRjapqMzx30pedxsOE7Dk9Deao0TSME" alt="Logo">
+  </div>
+
+  <h2>احسب الأحمال الحرارية لغرفتك الآن</h2>
+
+  <form id="calculatorForm">
+    <label for="length">الطول (متر)</label>
+    <input type="number" id="length" name="length" required>
+
+    <label for="width">العرض (متر)</label>
+    <input type="number" id="width" name="width" required>
+
+    <label for="height">الارتفاع (متر)</label>
+    <input type="number" id="height" name="height" required>
+
+    <button type="button" onclick="calculate()">حساب</button>
+  </form>
+
+  <div id="result"></div>
+</div>
+
+<script>
+function calculate() {
+  // Calculation logic
+  var length = parseFloat(document.getElementById('length').value);
+  var width = parseFloat(document.getElementById('width').value);
+  var height = parseFloat(document.getElementById('height').value);
+  var refrigerationUnits = length * width * height * 300;
+  var tons = Math.ceil(refrigerationUnits / 12000);
+
+  document.getElementById('result').innerHTML = "<div>:الأطنان اللازمة</div><div>" + tons + "</div>" +
+                                                  "<p>نود التنويه بأن هذا الرقم هو الحد الأدنى لأن الأحمال الحرارية تعتمد على عدة عوامل منها عدد النوافذ، المنطقة و درجات الحرارة الخارجية، عدد الأشخاص و الأجهزة الموجودة في الغرفة … إلخ</p>" +
+                                                  "<p> يمكنكم التواصل معنا للحصول على عرض سعر يوفر حساب أطنان دقيق يتضمن كل هذه التفاصيل</p>" +
+                                                  "<p> :تواصل معنا الآن </p>"+
+                                                  "<p><a class='link' href='https://api.whatsapp.com/message/YOF3RALOBXJZL1?autoload=1&app_absent=0' onclick='window.location.href=this.href;'>WhatsApp</a></p>";
+
+  // Increment visit count
+  var visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
+  visitCount++;
+  localStorage.setItem('visitCount', visitCount);
+
+  // Display visit count
+  document.getElementById('result').innerHTML += "<p>عدد الزيارات: " + visitCount + "</p>";
+}
+</script>
+
+</body>
+</html>
