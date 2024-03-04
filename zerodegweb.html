@@ -100,6 +100,8 @@ button:hover {
 
   <h2>احسب الأحمال الحرارية لغرفتك الآن</h2>
 
+  <div id="result"></div> <!-- Move the result display before the form -->
+
   <form id="calculatorForm">
     <label for="length">الطول (متر)</label>
     <input type="number" id="length" name="length" required>
@@ -112,8 +114,6 @@ button:hover {
 
     <button type="button" onclick="calculate()">حساب</button>
   </form>
-
-  <div id="result"></div>
 </div>
 
 <script>
