@@ -100,6 +100,8 @@ button:hover {
 
   <h2>احسب الأحمال الحرارية لغرفتك الآن</h2>
 
+  <div id="result"></div> <!-- Only display the visit count before the form -->
+
   <form id="calculatorForm">
     <label for="length">الطول (متر)</label>
     <input type="number" id="length" name="length" required>
@@ -112,11 +114,15 @@ button:hover {
 
     <button type="button" onclick="calculate()">حساب</button>
   </form>
-
-  <div id="result"></div>
 </div>
 
 <script>
+// Increment visit count and display it
+var visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
+visitCount++;
+localStorage.setItem('visitCount', visitCount);
+document.getElementById('result').innerHTML += "<p>عدد الزيارات: " + visitCount + "</p>";
+
 function calculate() {
   // Calculation logic
   var length = parseFloat(document.getElementById('length').value);
@@ -130,14 +136,6 @@ function calculate() {
                                                   "<p> يمكنكم التواصل معنا للحصول على عرض سعر يوفر حساب أطنان دقيق يتضمن كل هذه التفاصيل</p>" +
                                                   "<p> :تواصل معنا الآن </p>"+
                                                   "<p><a class='link' href='https://api.whatsapp.com/message/YOF3RALOBXJZL1?autoload=1&app_absent=0' onclick='window.location.href=this.href;'>WhatsApp</a></p>";
-
-  // Increment visit count
-  var visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
-  visitCount++;
-  localStorage.setItem('visitCount', visitCount);
-
-  // Display visit count
-  document.getElementById('result').innerHTML += "<p>عدد الزيارات: " + visitCount + "</p>";
 }
 </script>
 
